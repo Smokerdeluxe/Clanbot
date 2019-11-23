@@ -5,8 +5,7 @@ exports.run = async (client, message, args, Discord, config, errChannel) => {
   var clans = [`feste`, `spitze`, `wächter`, `löwen`, `see`, `hütte`, `camp`, `steiger`, `lager`];
   var aktion = [`neu`, `alt`, `kick`, `rat`, `clanrat`];
   let member = message.mentions.members.first();
-  var clanname = args[0].toLowerCase();
-  var aktionname = args[1].toLowerCase();
+ 
 
   var goodEmbed;
   function fertig(art, text) {
@@ -87,6 +86,7 @@ exports.run = async (client, message, args, Discord, config, errChannel) => {
     `Kein Clan erkannt!`,
     `Du hast den Clan, hinter -spiel nicht eingegeben! \nz.b. -cr **feste** neu ${message.author}`
   )
+   var clanname = args[0].toLowerCase();
   if (!clans.some(r => clans.includes(clanname))) return fehler(
     `Clan ${args[0]} existiert nicht!`,
     `Mögliche Clans sind: \nfeste, spitze, wächter, löwen, see, hütte, camp, steiger, lager`
@@ -97,6 +97,7 @@ exports.run = async (client, message, args, Discord, config, errChannel) => {
     `Keine Aktion eingegeben!`,
     `z.b. -cr feste **neu** ${message.author}`
   )
+  var aktionname = args[1].toLowerCase();
   if (!aktion.some(r => aktion.includes(aktionname))) return fehler(
     `Falsche Aktion eingegeben!`,
     `Mögliche Aktionen sind: \n${aktion}`
