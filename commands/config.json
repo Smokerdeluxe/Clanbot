@@ -1,6 +1,7 @@
 {
   "prefix": "-",
   "kartenanzahl": "94",
+  "deleteTime": "60",
   "kommandoDelete": "n",
   "deleteCR": "y",
   "APIurl": "https://api.royaleapi.com",
