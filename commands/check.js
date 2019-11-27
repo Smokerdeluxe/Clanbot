@@ -30,10 +30,15 @@ exports.run = async (client, message, args) => {
     // Daten als JSON Datei übergeben
     let dataA = JSON.parse(bodya);
     // Error Behandlung ist STOP => Nachricht senden
-    if (dataA.status === 400 || dataA.status === 401 || dataA.status === 404)
-      return message.reply(`\n Falsches Tag (#9LRG029U) eingegeben!`);
-    if (dataA.status === 429 || dataA.statusCode === 500 || dataA.status === 503 || dataA.status === 522)
-      return message.reply(`\n Probleme mit der RoayleApi, versuch es später`);
+    if (dataA.statusCode === 400) return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
+    if (dataA.statusCode === 401) return message.reply(`\nEtws mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
+    if (dataA.statusCode === 403) return message.reply(`\nForbidden!`);
+    if (dataA.statusCode === 417) return message.reply(`\nExpaction failed!`);
+    if (dataA.statusCode === 429) return message.reply(`\nZu viele Api-Abfragen... Bitte warte ein wenig!`);
+    if (dataA.statusCode === 500) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (dataA.statusCode === 501) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (dataA.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (dataA.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
 
     //Discord.js laden, um Embed zu erstellen
     const Discord = require(`discord.js`);
