@@ -39,10 +39,15 @@ exports.run = async (client, message, args) => {
     // Daten als JSON Datei übergeben
     let dataA = JSON.parse(bodya);
     // Error Behandlung ist STOP => Nachricht senden
-    if (dataA.status === 400 || dataA.status === 401 || dataA.status === 404)
-      return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
-    if (dataA.status === 429 || dataA.statusCode === 500 || dataA.status === 503 || dataA.status === 522)
-      return message.reply(`\nProbleme mit der RoayleApi, versuch es später`);
+    if (dataA.statusCode === 400) return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
+    if (dataA.statusCode === 401) return message.reply(`\nEtws mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
+    if (dataA.statusCode === 403) return message.reply(`\nForbidden!`);
+    if (dataA.statusCode === 417) return message.reply(`\nExpaction failed!`);
+    if (dataA.statusCode === 429) return message.reply(`\nZu viele Api-Abfragen... Bitte warte ein wenig!`);
+    if (dataA.statusCode === 500) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (dataA.statusCode === 501) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (dataA.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (dataA.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
 
     //**********************************************//
     //API Request ---Clanabfrage Warlog--- ***data***
@@ -58,10 +63,15 @@ exports.run = async (client, message, args) => {
       // Daten als JSON Datei übergeben
       let data = JSON.parse(body);
       // Error Behandlung ist STOP => Nachricht senden
-      if (data.status === 400 || data.status === 401 || data.status === 404)
-        return message.reply("\n Falsches Tag (#9LRG029U) eingegeben!");
-      if (data.status === 429 || data.status === 500 || data.status === 503 || data.status === 522)
-        return message.reply("\n Probleme mit der RoayleApi, versuch es später");
+    if (data.statusCode === 400) return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
+    if (data.statusCode === 401) return message.reply(`\nEtws mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
+    if (data.statusCode === 403) return message.reply(`\nForbidden!`);
+    if (data.statusCode === 417) return message.reply(`\nExpaction failed!`);
+    if (data.statusCode === 429) return message.reply(`\nZu viele Api-Abfragen... Bitte warte ein wenig!`);
+    if (data.statusCode === 500) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (data.statusCode === 501) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (data.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+    if (data.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
 
       //--------------------CODE--------------------//  
       //Emojis abfragen
