@@ -26,15 +26,4 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 
-fs.readdir("./commands/roleManager/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./commands/roleManager/${file}`);
-    let commandName = file.split(".")[0];
-    console.log(`Rollenzuweisung für ${commandName} erfolgreich geladen`);
-    client.commands.set(commandName, props);
-  });
-});
-
 client.login(process.env.DISCORD_BOT_SECRET);
