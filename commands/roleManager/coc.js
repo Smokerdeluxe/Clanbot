@@ -310,14 +310,14 @@ Im <#380061588201406465> könnt ihr ungestört miteinander sprechen :wink:`);
         member.addRole(rat.id)
           .then(rollen = rollen + `${rat} `)
           .catch(console.error);
-        fertig(`Rolle hinzugefügt!` `**${member.displayName}** wurde die Rolle ${rollen} zugewiesen! Da die Rolle ${altenrat} bereits vorhanden war, wurde nur eine PN zur Aufnnahme gesendet! Kein Einleitungstext!`);
+        fertig(`Rolle hinzugefügt!`, `**${member.displayName}** wurde die Rolle ${rollen} zugewiesen! Da die Rolle ${altenrat} bereits vorhanden war, wurde nur eine PN zur Aufnnahme gesendet! Kein Einleitungstext!`);
         privat(`Hallo ${member.displayName}`, `651639100801024000.png`, `Du wudest befördert und bist nun **${rat.name}**! Schau dir den Regierungsberich unterhalb des BS-Bereich an, er variiert bei den Clans!`);
         return logging(`**${member.displayName}** wurde/n die Rolle/n ${rollen} zugewiesen!`);
       }
       if (member.roles.has(rat.id)) {
         member.removeRole(rat.id)
         fertig(`Rolle entfernt!`, `**${member.displayName}** wurde die Rolle  ${rat} abgenommen! Es wurde eine PN zur Info gesendet!`);
-        privat(`Hallo ${member.displayName}`, `651639100801024000.png`, `Du wudest degradiert und bist nun kein ${rat.name} mehr! Bei Fragen wende dich an die Clanführung: \n\n${fuhrungPing}`
+        privat(`Hallo ${member.displayName}`, `651639100801024000.png`, `Du wudest degradiert und bist nun kein **${rat.name}** mehr! Bei Fragen wende dich an die Clanführung: \n\n${fuhrungPing}`
         );
         return logging(`**${member.displayName}** wurde die Rolle ${rat} abgenommen!`);
       }
