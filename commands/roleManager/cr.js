@@ -340,7 +340,7 @@ Im <#380061588201406465> könnt ihr ungestört miteinander sprechen :wink:`);
         member.addRole(rat.id)
           .then(rollen = rollen + `${rat} `)
           .catch(console.error);
-        fertig(`Rolle hinzugefügt!` `**${member.displayName}** wurde die Rolle ${rollen} zugewiesen! Da die Rolle ${altenrat} bereits vorhanden war, wurde nur eine PN zur Aufnnahme gesendet! Kein Einleitungstext!`);
+        fertig(`Rolle hinzugefügt!`, `**${member.displayName}** wurde die Rolle ${rollen} zugewiesen! Da die Rolle ${altenrat} bereits vorhanden war, wurde nur eine PN zur Aufnnahme gesendet! Kein Einleitungstext!`);
         privat(`Hallo ${member.displayName}`, `599526611787710484.png`, `Du wudest befördert und bist nun **${rat.name}**! Schau dir den Regierungsberich unterhalb des CR-Bereich an, er variiert bei den Clans!`);
         return logging(`**${member.displayName}** wurde/n die Rolle/n ${rollen} zugewiesen!`);
       }
