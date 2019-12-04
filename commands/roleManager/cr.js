@@ -347,7 +347,7 @@ Im <#380061588201406465> könnt ihr ungestört miteinander sprechen :wink:`);
       if (member.roles.has(rat.id)) {
         member.removeRole(rat.id)
         fertig(`Rolle entfernt!`, `**${member.displayName}** wurde die Rolle  ${rat} abgenommen! Es wurde eine PN zur Info gesendet!`);
-        privat(`Hallo ${member.displayName}`, `599526611787710484.png`, `Du wudest degradiert und bist nun kein Berg${clannameS} Ältester mehr! Bei Fragen wende dich an die Clanführung: \n\n${fuhrungPing}`
+        privat(`Hallo ${member.displayName}`, `599526611787710484.png`, `Du wudest degradiert und bist nun kein **${rat.name}** mehr! Bei Fragen wende dich an die Clanführung: \n\n${fuhrungPing}`
         );
         return logging(`**${member.displayName}** wurde die Rolle ${rat} abgenommen!`);
       }
