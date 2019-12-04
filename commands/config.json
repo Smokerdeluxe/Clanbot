@@ -1,12 +1,33 @@
 {
   "prefix": "-",
   "kartenanzahl": "94",
-  "deleteTime": "60",
   "kommandoDelete": "n",
-  "deleteCR": "y",
   "APIurl": "https://api.royaleapi.com",
+  "deleteCheck": "y",
+  "deleteCopy": "y",
+  "deleteInfo": "y",
+  "deleteKarten": "y",
+  "deleteKarten2": "y",
+  "deleteNeu": "y",
+  "deletePN": "y",
+  "deleteWarn": "y",
+  "deleteWürfel": "n",
+  "deleteCR": "y",
+  "deleteBS": "y",
+  "deleteCoC": "y",
+  "deleteTime": "60",
+  "errChannId": "624292757787115520",
+  "altenratID": "",
+  "clanratID": "",
+  "clansCR": ["Lager", "Feste", "Spitze", "Wächter", "Löwen", "See", "Hütte", "Steiger", "Camp"],
+  "clansBS": ["Fortress"],
+  "clansCoC": ["Drachen"],
+  "clansCoD": ["Schützen"],
 
-  "clan1": "Bergfeste",
+  "clan": "Lager",
+  "tag": "PR20YYGV",
+
+  "clan1": "Feste",
   "tag1": "2RGL0LLU",
   "probezeit1": "20",
   "legi1": "20",
@@ -14,10 +35,10 @@
   "silber1": "50",
   "bronze1": "50",
   "warwins1": "50",
-  "quote1": "65",
+  "quote1": "55",
   "teilnahme1": "50",
-
-  "clan2": "Bergspitze",
+  
+  "clan2": "Spitze",
   "tag2": "8VPPU2V9",
   "probezeit2": "20",
   "legi2": "5",
@@ -27,8 +48,8 @@
   "warwins2": "50",
   "quote2": "55",
   "teilnahme2": "40",
-
-  "clan3": "Bergwächter",
+ 
+  "clan3": "Wächter",
   "tag3": "PC8V90UG",
   "probezeit3": "20",
   "legi3": "0",
@@ -39,7 +60,7 @@
   "quote3": "40",
   "teilnahme3": "35",
 
-  "clan4": "Berglöwen",
+  "clan4": "Löwen",
   "tag4": "Y8JU0CPU",
   "probezeit4": "20",
   "legi4": "0",
@@ -50,7 +71,7 @@
   "quote4": "30",
   "teilnahme4": "20",
 
-  "clan5": "Bergsee",
+  "clan5": "See",
   "tag5": "PPYYPUPU",
   "probezeit5": "20",
   "legi5": "0",
@@ -61,7 +82,7 @@
   "quote5": "25",
   "teilnahme5": "20",
 
-  "clan6": "Berghütte",
+  "clan6": "Hütte",
   "tag6": "PPR9RGQ2",
   "probezeit6": "20",
   "legi6": "0",
@@ -72,8 +93,8 @@
   "quote6": "10",
   "teilnahme6": "10",
 
-  "clan7": "Bergsteiger",
-  "tag7": "",
+  "clan7": "Steiger",
+  "tag7": "Y8Y99RRR",
   "probezeit7": "20",
   "legi7": "0",
   "gold7": "0",
@@ -81,5 +102,17 @@
   "bronze7": "40",
   "warwins7": "0",
   "quote7": "0",
-  "teilnahme7": "10"
+  "teilnahme7": "10",
+
+  "clan8": "Camp",
+  "tag8": "PR20YYGV",
+  "probezeit8": "20",
+  "legi8": "0",
+  "gold8": "0",
+  "silber8": "0",
+  "bronze8": "50",
+  "warwins8": "0",
+  "quote8": "0",
+  "teilnahme8": "10"
+
 }
