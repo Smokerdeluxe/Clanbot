@@ -1,6 +1,6 @@
 exports.run = async (client, message, args, Discord, config, errChannel) => {
   //Eingegebene Nachricht löschen?
-  if (config.deleteBS == `y`) message.delete(config.deleteTime * 1000);
+  if (config.deleteRoleManager == `y`) message.delete(config.deleteTime * 1000);
   //commando: -cr feste add @Smoker
   var rollen = ``;
   var clans = config.clansBS;
@@ -184,7 +184,7 @@ Frag da gerne alles was du möchtest. Egal was für Fragen du hast!
 
 Nähere Infos zu einem Kanal (Zweck, wer schreibt hier usw.) findest du in der Kanalbeschreibung (vom rechten Rand nach links wischen, Textfeld ganz oben)
 
-Melde dich, wenn du einer anderen Gaming Sparte beitreten möchtest, damit wir dir weitere Serverbereiche freischalten können. Wir sind auch in Clash of Clans, Clash Royale und Call of Duty vertreten. 
+Melde dich, wenn du einer anderen Gaming Sparte beitreten möchtest, damit wir dir weitere Serverbereiche freischalten können. Wir sind auch in Clash of Clans und Clash Royale vertreten. 
 
 Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:
 

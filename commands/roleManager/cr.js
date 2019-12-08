@@ -1,6 +1,6 @@
 exports.run = async (client, message, args, Discord, config, errChannel) => {
   //Eingegebene Nachricht löschen?
-  if (config.deleteCR == `y`) message.delete(config.deleteTime * 1000);
+  if (config.deleteRoleManager == `y`) message.delete(config.deleteTime * 1000);
   //commando: -cr feste add @Smoker
   var rollen = ``;
   var clans = config.clansCR;
@@ -205,7 +205,7 @@ Auch die Bereiche Waffenkammer (Tutorials zu Decktypen etc.) und Turniere (Infos
 
 Nähere Infos zu einem Kanal (Zweck, wer schreibt hier usw.) findest du in der Kanalbeschreibung (vom rechten Rand nach links wischen, Textfeld ganz oben)
 
-Melde dich, wenn du einer anderen Gaming Sparte beitreten möchtest, damit wir dir weitere Serverbereiche freischalten können. Wir sind auch in Clash of Clans, Brawl Stars und Call of Duty vertreten. 
+Melde dich, wenn du einer anderen Gaming Sparte beitreten möchtest, damit wir dir weitere Serverbereiche freischalten können. Wir sind auch in Clash of Clans und Brawl Stars vertreten. 
 
 Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:
 

@@ -1,6 +1,6 @@
 exports.run = async (client, message, args, Discord, config, errChannel) => {
   //Eingegebene Nachricht löschen?
-  if (config.deleteCoC == `y`) message.delete(config.deleteTime * 1000);
+  if (config.deleteRoleManager == `y`) message.delete(config.deleteTime * 1000);
   //commando: -cr feste add @Smoker
   var rollen = ``;
   var clans = config.clansCoC;
