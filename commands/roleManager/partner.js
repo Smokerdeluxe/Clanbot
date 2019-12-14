@@ -126,6 +126,7 @@ exports.run = async (client, message, args, Discord, config, errChannel) => {
       }
       fertig(`Rolle hinzugefügt!`, `**${member.displayName}** wurde die Rolle ${rollen} zugewiesen. \nSpieler wurde per PN benachrichtigt. \nBitte nicht vergessen den **Nickname anzupassen!**`);
       privat(`Willkommen bei der Bergclan Familie!`, `652728425898835969.png`, `Um dich als Turnierpartner freizuschalten, sieh dir das <#541643055963439106> an (falls noch nicht geschehen) und bestätige unten mit **allen Emojis/Reaktionen, __von links nach rechts__**! \n\nDann sind die für dich relevanten Serverbereiche freigeschaltet:
+
 **__Innenhof__**
 Dann hast du Zutritt zum [Wegweiser](https://discordapp.com/channels/375761445184471050/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
 

@@ -216,7 +216,7 @@ __Deine Clanführung:__ \n${fuhrungPing}`
     else {
       for (const key in leitung) {
         userID = leitung[key];
-        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als Mitglied für **${clan.name}** einzuteilen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. einteilen! \nFür Spieler aus einem Familienclan gehe dazu in <#612953942871244800>, für neue Spieler gehe dazu in <#500399456861028352> \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
+        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als Mitglied für **${clan.name}** einzuteilen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. einteilen! \nFür Spieler aus einem Familienclan gehe dazu in <#375762081632485376>, für neue Spieler gehe dazu in <#500399456861028352> (Falls hier **#invalid-channel** steht, kurz auf unser Servericon klicken). \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
           .then(client.users.get(userID).send(`-cr ${clannameS} neu @${user.username}#${user.discriminator}`))
           .catch(console.error);
       }
@@ -245,7 +245,7 @@ __Deine Clanführung:__ \n${fuhrungPing}`
     else {
       for (const key in leitung) {
         userID = leitung[key];
-        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als Mitglied für **${clan.name}** zu entfernen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. entfernen! \nGehe dazu in <#612953942871244800> \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
+        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als Mitglied für **${clan.name}** zu entfernen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. entfernen! \nGehe dazu in <#375762081632485376> (Falls hier **#invalid-channel** steht, kurz auf unser Servericon klicken). \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
           .then(client.users.get(userID).send(`-cr ${clannameS} alt @${user.username}#${user.discriminator}`))
           .catch(console.error);
       }
@@ -302,7 +302,7 @@ __Deine Clanführung:__ \n${fuhrungPing}`
     else {
       for (const key in leitung) {
         userID = leitung[key];
-        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als Mitglied für **${clan.name}** zu entfernen und aus der **${fam.name}** zu kicken, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. kicken! \nGeh in <#612953942871244800> \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
+        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als Mitglied für **${clan.name}** zu entfernen und aus der **${fam.name}** zu kicken, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. kicken! \nGeh in <#375762081632485376> (Falls hier **#invalid-channel** steht, kurz auf unser Servericon klicken). \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
           .then(client.users.get(userID).send(`-cr ${clannameS} kick @${user.username}#${user.discriminator}`))
           .catch(console.error);
       }
@@ -355,7 +355,7 @@ Im <#380061588201406465> könnt ihr ungestört miteinander sprechen :wink:`);
     else {
       for (const key in leitung) {
         userID = leitung[key];
-        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als **${rat.name}** hinzuzufügen/zu entfernen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. nhizufügen/entfernen! \nGehe dazu in <#612953942871244800> \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
+        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als **${rat.name}** hinzuzufügen/zu entfernen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. nhizufügen/entfernen! \nGehe dazu in <#375762081632485376> (Falls hier **#invalid-channel** steht, kurz auf unser Servericon klicken). \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
           .then(client.users.get(userID).send(`-cr ${clannameS} rat @${user.username}#${user.discriminator}`))
           .catch(console.error);
       }
@@ -390,7 +390,7 @@ Im <#506914804280328192> könnt ihr ungestört miteinander sprechen falls nötig
     else {
       for (const key in leitung) {
         userID = leitung[key];
-        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als **${clanrat.name}** hinzuzufügen/zu entfernen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. nhizufügen/entfernen! \nGeh in <#612953942871244800> \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
+        client.users.get(userID).send(`Huhu... \n**${message.member.nickname}** hat versucht, **${member.displayName}** als **${clanrat.name}** hinzuzufügen/zu entfernen, ist aber nicht berechtigt. Diese Nachricht wurde auch an deine anderen Vize gesendet, ihr wisst also alle Bescheid. Bitte schaut euch das mal an, ggf. nhizufügen/entfernen! \nGeh in <#375762081632485376> (Falls hier **#invalid-channel** steht, kurz auf unser Servericon klicken). \nDort fügst du folgende Zeile ein! \n\n:arrow_down: Kopiere :arrow_down:`)
           .then(client.users.get(userID).send(`-cr ${clannameS} clanrat @${user.username}#${user.discriminator}`))
           .catch(console.error);
       }
