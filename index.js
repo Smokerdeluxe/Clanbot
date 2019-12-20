@@ -3,7 +3,7 @@ const Enmap = require("enmap");
 const fs = require("fs");
 const keep_alive = require("./keep_alive.js");
 const client = new Discord.Client();
-
+var jezt = 0;
 client.commands = new Enmap();
 
 fs.readdir("./events/", (err, files) => {
