@@ -1,9 +1,9 @@
-exports.run = async (client, message, args, Discord, config, logging, fertig, fehler, warnung, privat) => {
+exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
 
   //commando: -cr feste add @Smoker
   //Eingegebene Nachricht löschen?
   if (config.deleteRoleManager == `y`) message.delete(config.deleteTime * 1000);
-  
+
   //++++++++++++++EINGABE PRÜFEN++++++++++++++//
   //++++++++++++++++++++++++++++++++++++++++++//-------------------------------------------------------------------
   //--arg "feste" prüfen
@@ -14,12 +14,6 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
   let clanname = args[0].charAt(0).toUpperCase() + args[0].slice(1).toLowerCase();
   let clannameS = args[0].toLowerCase();
   let clans = config.clanCR.map(c => c.clan);
-  //var clans = [];
-  //for (const nR in config.clanCR) {
-  //  clans.push(config.clanCR[nR].clan)
-  //}
-  //var clans = config.clanCR[0].clan;
-  console.log(clans)
   let clanmogl = clans.join(", ");
   if (!clans.includes(clanname)) return fehler(
     `Clan ${args[0]} existiert nicht!`,
@@ -56,7 +50,7 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
   let kammer = message.guild.roles.get(config.kammer);
   let turnier = message.guild.roles.get(config.turnier);
   let pn = message.guild.roles.get(config.pn);
- 
+
   let altenrat = message.guild.roles.get(config.altenrat);
   let clanrat = message.guild.roles.get(config.clanrat);
   let baumeista = message.guild.roles.get(config.baumeista);
@@ -69,7 +63,7 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
       var clanratClan = message.guild.roles.find(r => r.name === config.ratCR + clanname);
       var leitung = rat.members.filter(m => m.roles.has(clanratClan.id)).map(u => u.user.id);
       var fuhrung = rat.members.filter(m => m.roles.has(clanratClan.id)).map(u => u.nickname).join("\n");
-      var fuhrungPing = rat.members.filter(m => m.roles.has(clanratClan.id)).map(u => `${u.user}`).join("\n");
+      var fuhrungPing = message.guild.members.filter(m => m.roles.has(clanratClan.id)).map(u => `${u.user}`).join("\n");
     }
   }
   //++++++++++++++ROLLEN VERGEBEN+++++++++++++//
@@ -77,9 +71,9 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
   var rollen = ``;
   //--Rollen hinzufügen
   if (aktionname === `neu`) {
-    
+
     //--Beschränkung auf Clanrat + Ältestenrat CLAN
-    if (message.member.roles.has(clanrat.id)){
+    if (message.member.roles.has(clanrat.id)) {
       //Clanrolle vergeben, wenn nicht vorhanden!
       if (member.roles.has(clan.id)) {
         return warnung(`Es wurde nichts geändert!`,
@@ -142,7 +136,7 @@ Nähere Infos zu einem Kanal (Zweck, wer schreibt hier usw.) findest du in der K
 Melde dich, wenn du einer anderen Gaming Sparte beitreten möchtest, damit wir dir weitere Serverbereiche freischalten können. Wir sind auch in Clash of Clans und Brawl Stars vertreten. 
 
 Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:`, `__Deine Clanführung:__`, `${fuhrungPing}`);
-      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurden folgende Rollen hinzugefügt: \n${rollen}`)
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurden folgende Rollen hinzugefügt: \n${rollen}`);
     }
     else {
       for (const key in leitung) {
@@ -158,7 +152,7 @@ Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:`, `__Deine C
   //--Rollen entfernen---------------------------------------------------------------------------------------------
   if (aktionname === `alt`) {
     //--Beschränkung auf Clanrat + Ältestenrat CLAN
-    if (message.member.roles.has(clanratClan.id)){
+    if (message.member.roles.has(clanratClan.id)) {
       //Clanrolle entfernen, wenn vorhanden!
       if (!member.roles.has(clan.id)) {
         return warnung(`Es wurde nichts geändert!`,
@@ -168,10 +162,16 @@ Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:`, `__Deine C
         member.removeRole(clan.id)
           .then(rollen = rollen + `${clan} `)
           .catch(console.error);
-        fertig(`Rolle entfernt!`,
-          `**${member.displayName}** wurde die Rolle ${rollen} wurde entfernt! \nBitte nicht vergessen den **Nickname anzupassen!**`);
-        return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurde die Rolle ${rollen} entfernt!`);
       }
+      if (member.roles.has(rat.id)) member.removeRole(rat.id)
+        .then(rollen = rollen + `${rat} `)
+        .catch(console.error);
+      if (member.roles.has(clanratClan.id)) member.removeRole(clanratClan.id)
+        .then(rollen = rollen + `${clanratClan} `)
+        .catch(console.error);
+      fertig(`Rolle entfernt!`,
+        `**${member.displayName}** wurde die Rolle ${rollen} wurde entfernt! \nBitte nicht vergessen den **Nickname anzupassen!**`);
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurde die Rolle ${rollen} entfernt!`);
     }
     else {
       for (const key in leitung) {
