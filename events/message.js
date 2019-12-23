@@ -94,5 +94,5 @@ module.exports = (client, message) => {
   }
 
   // Run the command
-  cmd.run(client, message, args, Discord, config, logging, fertig, fehler, warnung, privat);
+  cmd.run(client, message, args, Discord, config, fehler, logging, fertig, warnung, privat);
 };
