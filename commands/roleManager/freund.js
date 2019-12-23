@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, Discord, config, logging, fertig, fehler, warnung, privat) => {
+exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
   //Eingegebene Nachricht löschen?
   if (config.deleteRoleManager == `y`) message.delete(config.deleteTime * 1000);
   //commando: -freund neu @Smoker
@@ -69,14 +69,14 @@ Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist 
       return logging(`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
     }
     else {
-      return fehler(`Nicht berechtigt!`, `Du musst im ${clanrat}, ${clanratBS} oder ${clanratCoC} sein, um ${freunde} auf dem Server einzuteilen!`);
+      return fehler(`Nicht berechtigt!`, `Du musst im ${clanrat} sein, um ${freunde} auf dem Server einzuteilen!`);
     }
   }
 
   //--Rolle entfernen---------------------------------------------------------------------------------------------
   if (aktionname === `alt`) {
     //--Beschränkung auf Clanrat
-    if (message.member.roles.has(clanrat.id) || message.member.roles.has(clanratBS.id) || message.member.roles.has(clanratCoC.id)) {
+    if (message.member.roles.has(clanrat.id)) {
       //Clanrolle vergeben, wenn nicht vorhanden!
       if (!member.roles.has(freunde.id)) {
         return warnung(`Es wurde nichts geändert!`,
@@ -115,7 +115,7 @@ Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist 
 
     }
     else {
-      return fehler(`Nicht berechtigt!`, `Du musst im ${clanrat}, ${clanratBS} oder ${clanratCoC} sein, um die Rolle ${freunde} entfernen zu können!`);
+      return fehler(`Nicht berechtigt!`, `Du musst im ${clanrat} sein, um die Rolle ${freunde} entfernen zu können!`);
     }
   }
 }
