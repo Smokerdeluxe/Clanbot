@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, Discord, config, logging, fertig, fehler, warnung, privat) => {
+exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
 
   //commando: -cr feste add @Smoker
   //Eingegebene Nachricht löschen?
@@ -14,12 +14,6 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
   let clanname = args[0].charAt(0).toUpperCase() + args[0].slice(1).toLowerCase();
   let clannameS = args[0].toLowerCase();
   let clans = config.clanCoC.map(c => c.clan);
-  //var clans = [];
-  //for (const nR in config.clanCR) {
-  //  clans.push(config.clanCR[nR].clan)
-  //}
-  //var clans = config.clanCR[0].clan;
-  console.log(clans)
   let clanmogl = clans.join(", ");
   if (!clans.includes(clanname)) return fehler(
     `Clan ${args[0]} existiert nicht!`,
@@ -127,7 +121,7 @@ Nähere Infos zu einem Kanal (Zweck, wer schreibt hier usw.) findest du in der K
 Melde dich, wenn du einer anderen Gaming Sparte beitreten möchtest, damit wir dir weitere Serverbereiche freischalten können. Wir sind auch in Clash Royale und Brawl Stars vertreten. 
 
 Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:`, `__Deine Clanführung:__`, `${fuhrungPing}`);
-      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurden folgende Rollen hinzugefügt: \n${rollen}`)
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurden folgende Rollen hinzugefügt: \n${rollen}`);
     }
     else {
       for (const key in leitung) {
@@ -153,10 +147,16 @@ Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:`, `__Deine C
         member.removeRole(clan.id)
           .then(rollen = rollen + `${clan} `)
           .catch(console.error);
-        fertig(`Rolle entfernt!`,
-          `**${member.displayName}** wurde die Rolle ${rollen} wurde entfernt! \nBitte nicht vergessen den **Nickname anzupassen!**`);
-        return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurde die Rolle ${rollen} entfernt!`);
       }
+      if (member.roles.has(rat.id)) member.removeRole(rat.id)
+        .then(rollen = rollen + `${rat} `)
+        .catch(console.error);
+      if (member.roles.has(clanratClan.id)) member.removeRole(clanratClan.id)
+        .then(rollen = rollen + `${clanratClan} `)
+        .catch(console.error);
+      fertig(`Rolle entfernt!`,
+        `**${member.displayName}** wurde die Rolle ${rollen} wurde entfernt! \nBitte nicht vergessen den **Nickname anzupassen!**`);
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole, `**${member.displayName}** wurde die Rolle ${rollen} entfernt!`);
     }
     else {
       for (const key in leitung) {
