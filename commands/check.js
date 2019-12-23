@@ -39,7 +39,7 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
     //Emojis definieren
     const trophys = client.emojis.get(`609806255493742651`);
     const trophysPB = client.emojis.get(`609806379242356817`);
-    const maxi = client.emojis.get(`658258500937580585`)
+    const maxi = client.emojis.get(`658258500937580585`);
     const legi = client.emojis.get(`609804490584883210`);
     const gold = client.emojis.get(`609804716758794262`);
     const silber = client.emojis.get(`609804751479242753`);
