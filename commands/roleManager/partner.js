@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, Discord, config, logging, fertig, fehler, warnung, privat) => {
+exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
   //Eingegebene Nachricht löschen?
   if (config.deleteRoleManager == `y`) message.delete(config.deleteTime * 1000);
   //commando: -freund neu @Smoker
@@ -8,7 +8,7 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
   //--arg "add" prüfen
   if (!args[0]) return fehler(
     `Keine Aktion eingegeben!`,
-    `z.b. -freund **neu** ${message.author}`
+    `z.b. -partner **neu** ${message.author}`
   );
   var aktion = [`neu`, `alt`];
   var aktionname = args[0].toLowerCase();
@@ -21,7 +21,7 @@ exports.run = async (client, message, args, Discord, config, logging, fertig, fe
   let member = message.mentions.members.first();
   if (!member) return fehler(
     `Keinen Spieler markiert!`,
-    `z.b. -freund neu ${message.author}`
+    `z.b. -partner neu ${message.author}`
   );
 
   //++++++++++++++PASSENDE ROLLEN SUCHEN++++++++++++++//
