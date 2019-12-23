@@ -188,7 +188,9 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
       .setFooter(
         `Anhand der Kartenlevel ist ${dataA.name} \nam besten für ${eignung} geeignet! \nDie folgende Nachricht in Browser kopieren \num Spieler einzuladen!`
       )
-    message.channel.send(embedINFO).then(message.channel.send(`clashroyale://playerInfo?id=${tag}`)).catch(console.error);
+    message.channel.send(embedINFO).then().catch(console.error);
+    message.channel.send(`clashroyale://playerInfo?id=${tag}`)
+    return console.log(`Check für ${dataA.name} erfolgreich durchgeführt!`)
     return console.log(`Check für ${dataA.name} erfolgreich durchgeführt!`)
   });
 }
