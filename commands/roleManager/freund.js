@@ -66,7 +66,7 @@ Das :sos: ist z.B. der **Support-Bereich**, dort findest du Infos zum Server und
 
 **__Schänke__**
 Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist herzlich eingeladen im [Berg-Chat](https://discordapp.com/channels/375761445184471050/375762081632485376) dabei zu sein!`, `Viel Spaß beim umsehen...`, `Bei Fragen einfach melden, bis bald :wink:`);
-      return logging(`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole,`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
     }
     else {
       return fehler(`Nicht berechtigt!`, `Du musst im ${clanrat} sein, um ${freunde} auf dem Server einzuteilen!`);
@@ -111,7 +111,7 @@ Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist 
 
       fertig(`Rolle entfernt!`, `**${member.displayName}** wurde/n die Rolle/n ${rollen} entfernt. \nSpieler wurde per PN benachrichtigt. \nBitte nicht vergessen den **Nickname anzupassen!**`);
       privat(`Nachricht der Bergclan Familie!`, config.emojiCR, `Dir wurde die Rolle Freunde abgenommen!`, `\u200b`, `\u200b`);
-      return logging(`**${member.displayName}** wurde/n die Rolle/n ${rollen} entfernt!`);
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole,`**${member.displayName}** wurde/n die Rolle/n ${rollen} entfernt!`);
 
     }
     else {
