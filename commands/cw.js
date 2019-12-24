@@ -1,7 +1,7 @@
 exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
 
   //Eingegebene Nachricht löschen?
-  if (config.deleteCheck == `y`) message.delete(config.deleteTime * 1000);
+  if (config.deleteCW == `y`) message.delete(config.deleteTime * 1000);
 
   //Erstes Wort nach Kommando als befehl definieren
   const befehl = args[0];
