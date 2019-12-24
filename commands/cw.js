@@ -1,7 +1,6 @@
-exports.run = async (client, message, args) => {
+exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
 
   //Eingegebene Nachricht löschen?
-  var config = require(`./config.json`);
   if (config.kommandoDelete == `y`) message.delete();
 
   //Erstes Wort nach Kommando als Befehl definieren
@@ -40,8 +39,7 @@ exports.run = async (client, message, args) => {
     if (dataA.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
     if (dataA.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
 
-    //Discord.js laden, um Embed zu erstellen
-    const Discord = require(`discord.js`);
+    
 
     //Emojis definieren
     const cwx = client.emojis.get(`574839788385992704`);
