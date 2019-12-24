@@ -18,7 +18,7 @@ module.exports = (client, message) => {
   if (!cmd) return;
 
   const Discord = require(`discord.js`);
-  const errChannel = client.channels.get(config.errChannId);
+  const logChannel = client.channels.get(config.logChannId);
 
   let logEmbed;
   let goodEmbed;
@@ -34,7 +34,7 @@ module.exports = (client, message) => {
         `https://cdn.discordapp.com/emojis/` + emoji
       )
       .setDescription(text)
-    errChannel.send(logEmbed)
+    logChannel.send(logEmbed)
       .then()
       .catch(console.error);
   }
