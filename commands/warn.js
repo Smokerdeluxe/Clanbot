@@ -1,4 +1,4 @@
-exports.run = async (client, message, args) => {
+exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
   //--------------------BEDINGUNG--------------------//
   // Berechtigung für?
   const modRole = message.guild.roles.find(role => role.name === "Ältestenrat");
@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
   if (!message.member.roles.has(modRole.id)) return message.reply(`\n Dieses Kommando is nur für **${modRole.name}**.`);
 
   //Eingegebene Nachricht löschen?
-  var config = require(`./config.json`);
+  
   if (config.kommandoDelete == `y`) message.delete();
 
   //Erstes Wort nach Kommando als Befehl definieren
