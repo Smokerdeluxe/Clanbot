@@ -1,45 +1,39 @@
 exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
 
   //Eingegebene Nachricht löschen?
-  if (config.kommandoDelete == `y`) message.delete();
+  if (config.deleteCheck == `y`) message.delete(config.deleteTime * 1000);
 
-  //Erstes Wort nach Kommando als Befehl definieren
-  const Befehl = args[0];
+  //Erstes Wort nach Kommando als befehl definieren
+  const befehl = args[0];
 
-  // Wenn Befehl nicht vorhanden STOP => Nachricht senden
-  if (!Befehl) return message.reply(`\nEs muss ein Tag (#9LRG029U) eingegeben werden!`);
+  // Wenn befehl nicht vorhanden STOP => Nachricht senden
+  if (!befehl) return fehler(`Kein Tag!`, `Es muss ein Tag (#9LRG029U) eingegeben werden!`);
 
-  // Wenn Befehl nicht mit # beginnt STOP => Nachricht senden
-  if (!Befehl.startsWith(`#`)) return message.reply(`\nUsertag muss so eingegenen werden #9LRG029U`);
+  // Wenn befehl nicht mit # beginnt STOP => Nachricht senden
+  if (!befehl.startsWith(`#`)) return fehler(`Tag falsch eingegeben!`, `Usertag muss so eingegenen werden #9LRG029U`);
 
-  // Befehl am # teilen und als tag definieren
-  const tag = Befehl.split(`#`)[1].toUpperCase();
+  // befehl am # teilen und als tag definieren
+  const tag = befehl.split(`#`)[1].toUpperCase();
 
+  //**********************************************//
   // API Request ---Spielerabfrage--- ***dataA***
   const request = require(`request`);
   var optionsa = {
     method: `GET`,
     url: `${config.APIurl}/player/${tag}`,
+    json: true,
     headers: { auth: process.env.API_SECRET }
   };
-  request(optionsa, function(errora, response, bodya) {
-    if (errora) throw new Error(errora);
+  request(optionsa, function(errA, resA, dataA) {
+    if (errA) throw new Error(errA);
     // Error Behandlung ist STOP => Nachricht senden
-    if (bodya.startsWith(`<`)) return message.reply(`\nProbleme mit der RoayleApi, versuch es später`);
-    // Daten als JSON Datei übergeben
-    let dataA = JSON.parse(bodya);
-    // Error Behandlung ist STOP => Nachricht senden
-    if (dataA.statusCode === 400) return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
-    if (dataA.statusCode === 401) return message.reply(`\nEtws mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
-    if (dataA.statusCode === 403) return message.reply(`\nForbidden!`);
-    if (dataA.statusCode === 417) return message.reply(`\nExpaction failed!`);
-    if (dataA.statusCode === 429) return message.reply(`\nZu viele Api-Abfragen... Bitte warte ein wenig!`);
-    if (dataA.statusCode === 500) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (dataA.statusCode === 501) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (dataA.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (dataA.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-
-    
+    if (resA.statusCode === 200) console.log(dataA.name + ` erfolgreich abgefragt.`)
+    if (resA.statusCode === 400) return fehler(`Falsches Tag!`, `Dein eingegebenes Spielertag (#9LRG029U) ist falsch! Kopiere es am besten aus dem Spielerprofil!`);
+    if (resA.statusCode === 401) return fehler(`Royale-API Token!`, `Etwas mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
+    if (resA.statusCode === 403) return fehler(`Verboten!`, `Zugang zu verbotenem Bereich, etwas ist schief gelaufen. Bitte melde es <@404331123900940298>!`);
+    if (resA.statusCode === 417) return fehler(`Royale-API...`, `Versuch es später nochmal!`);
+    if (resA.statusCode === 429) return fehler(`Royale-API überlastet!`, `Zu viele Api-Abfragen... Bitte warte ein wenig!`);
+    if (resA.statusCode === 500 || resA.statusCode === 501 || resA.statusCode === 503 || resA.statusCode === 522) return fehler(`Royale-API...`, `Versuch es später nochmal!`);
 
     //Emojis definieren
     const cwx = client.emojis.get(`574839788385992704`);
@@ -47,6 +41,7 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
     const cwwin = client.emojis.get(`574655806663032862`);
     const trophys = client.emojis.get(`609806255493742651`);
     const trophysPB = client.emojis.get(`609806379242356817`);
+    const maxi = client.emojis.get(`658258500937580585`);
     const legi = client.emojis.get(`609804490584883210`);
     const gold = client.emojis.get(`609804716758794262`);
     const silber = client.emojis.get(`609804751479242753`);
@@ -57,18 +52,20 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
     const cwtrophy = client.emojis.get(`610057019176648724`);
 
     //Berechnen der Kartenlvl
-    var bro = sil = gol = leg = 0;
+    var bro = sil = gol = leg = max = 0;
 
     for (const key in dataA.cards) {
       cardlevel = dataA.cards[key].displayLevel;
       if (cardlevel == 9) bro = bro + 1;
       if (cardlevel == 10) sil = sil + 1;
       if (cardlevel == 11) gol = gol + 1;
-      if (cardlevel == 12 || cardlevel == 13) leg = leg + 1;
-      var per_bro = ((bro + sil + gol + leg) / config.kartenanzahl) * 100;
-      var per_sil = ((sil + gol + leg) / config.kartenanzahl) * 100;
-      var per_gol = ((gol + leg) / config.kartenanzahl) * 100;
-      var per_leg = (leg / config.kartenanzahl) * 100;
+      if (cardlevel == 12) leg = leg + 1;
+      if (cardlevel == 13) max = max + 1;
+      var per_bro = ((bro + sil + gol + leg + max) / config.kartenanzahl) * 100;
+      var per_sil = ((sil + gol + leg + max) / config.kartenanzahl) * 100;
+      var per_gol = ((gol + leg + max) / config.kartenanzahl) * 100;
+      var per_leg = ((leg + max) / config.kartenanzahl) * 100;
+      var per_max = (max / config.kartenanzahl) * 100;
     }
 
     if (dataA.clan.name != "") {
@@ -77,53 +74,42 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
       var options = {
         method: `GET`,
         url: `${config.APIurl}/clan/${dataA.clan.tag}/warlog`,
+        json: true,
         headers: { auth: process.env.API_SECRET }
       };
-      request(options, function(error, response, body) {
-        if (error) throw new Error(error);
+      request(options, function(err, res, data) {
+        if (err) throw new Error(err);
         // Error Behandlung ist STOP => Nachricht senden
-        if (body.startsWith(`<`)) return message.reply(`\nProbleme mit der RoayleApi, versuch es später`);
-        // Daten als JSON Datei übergeben
-        let data = JSON.parse(body);
-        // Error Behandlung ist STOP => Nachricht senden
-    if (data.statusCode === 400) return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
-    if (data.statusCode === 401) return message.reply(`\nEtws mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
-    if (data.statusCode === 403) return message.reply(`\nForbidden!`);
-    if (data.statusCode === 417) return message.reply(`\nExpaction failed!`);
-    if (data.statusCode === 429) return message.reply(`\nZu viele Api-Abfragen... Bitte warte ein wenig!`);
-    if (data.statusCode === 500) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (data.statusCode === 501) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (data.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (data.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+        if (res.statusCode === 200) console.log(dataA.name + ` erfolgreich abgefragt.`)
+        if (res.statusCode === 400) return fehler(`Falsches Tag!`, `Dein eingegebenes Spielertag (#9LRG029U) ist falsch! Kopiere es am besten aus dem Spielerprofil!`);
+        if (res.statusCode === 401) return fehler(`Royale-API Token!`, `Etwas mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
+        if (res.statusCode === 403) return fehler(`Verboten!`, `Zugang zu verbotenem Bereich, etwas ist schief gelaufen. Bitte melde es <@404331123900940298>!`);
+        if (res.statusCode === 417) return fehler(`Royale-API...`, `Versuch es später nochmal!`);
+        if (res.statusCode === 429) return fehler(`Royale-API überlastet!`, `Zu viele Api-Abfragen... Bitte warte ein wenig!`);
+        if (res.statusCode === 500 || res.statusCode === 501 || res.statusCode === 503 || resA.statusCode === 522) return fehler(`Royale-API...`, `Versuch es später nochmal!`);
         //--------------------------------------------------------------------------------------------------
         //API Request ---Clanabfrage Clan--- ***dataB***
         var optionsb = {
           method: `GET`,
           url: `${config.APIurl}/clan/${dataA.clan.tag}`,
+          json: true,
           headers: { auth: process.env.API_SECRET }
         };
-        request(optionsb, function(errorb, response, bodyb) {
-          if (errorb) throw new Error(errorb);
+        request(optionsb, function(errB, resB, dataB) {
+          if (errB) throw new Error(errB);
           // Error Behandlung ist STOP => Nachricht senden
-          if (bodyb.startsWith(`<`)) return message.reply(`\n Probleme mit der RoayleApi, versuch es später`);
-          // Daten als JSON Datei übergeben
-          let datab = JSON.parse(bodyb);
-          // Error Behandlung ist STOP => Nachricht senden
-    if (datab.statusCode === 400) return message.reply(`\nFalsches Tag (#9LRG029U) eingegeben!`);
-    if (datab.statusCode === 401) return message.reply(`\nEtws mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
-    if (datab.statusCode === 403) return message.reply(`\nForbidden!`);
-    if (datab.statusCode === 417) return message.reply(`\nExpaction failed!`);
-    if (datab.statusCode === 429) return message.reply(`\nZu viele Api-Abfragen... Bitte warte ein wenig!`);
-    if (datab.statusCode === 500) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (datab.statusCode === 501) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (datab.statusCode === 503) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
-    if (datab.statusCode === 522) return message.reply(`\nProbleme mit der Royale-API... Versuch es später nochmal!`);
+          if (resB.statusCode === 200) console.log(dataA.name + ` erfolgreich abgefragt.`)
+          if (resB.statusCode === 400) return fehler(`Falsches Tag!`, `Dein eingegebenes Spielertag (#9LRG029U) ist falsch! Kopiere es am besten aus dem Spielerprofil!`);
+          if (resB.statusCode === 401) return fehler(`Royale-API Token!`, `Etwas mit dem Api-Token stimmt nicht. Bitte melde es <@404331123900940298>!`);
+          if (resB.statusCode === 403) return fehler(`Verboten!`, `Zugang zu verbotenem Bereich, etwas ist schief gelaufen. Bitte melde es <@404331123900940298>!`);
+          if (resB.statusCode === 417) return fehler(`Royale-API...`, `Versuch es später nochmal!`);
+          if (resB.statusCode === 429) return fehler(`Royale-API überlastet!`, `Zu viele Api-Abfragen... Bitte warte ein wenig!`);
+          if (resB.statusCode === 500 || resB.statusCode === 501 || resB.statusCode === 503 || resA.statusCode === 522) return fehler(`Royale-API...`, `Versuch es später nochmal!`);
 
-          //Quote und Verwarnungen berechnen
-          var Quote = Teiln = Sammelwarn = Kriegwarn = spiele = siege = mogliche = 0;
+          //quote und Verwarnungen berechnen
+          var quote = teiln = sammelwarn = kriegwarn = spiele = siege = mogliche = 0;
           var pics = `|`;
-
-          //Auslesen der Teilnehmer
+          //Auslesen der teilnehmer
           for (const key in data) {
             teilnehmer = data[key].participants;
             //Auslesen der Tags
@@ -133,13 +119,13 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
               //Wenn Tag mit abgefagtem übereinstimmt
               if (member == tag) {
 
-                //Teilnahme und Quote berechnen
+                //teilnahme und quote berechnen
                 wins = teilnehmer[anz].wins;
                 spiele = spiele + teilnehmer[anz].battleCount;
                 siege = siege + wins;
-                Quote = (siege / spiele) * 100;
+                quote = (siege / spiele) * 100;
                 if (teilnehmer[anz].battleCount > 1) mogliche = mogliche + 1;
-                Teiln = (spiele / (mogliche + 10)) * 100;
+                teiln = (spiele / (mogliche + 10)) * 100;
 
                 //Zuordnung der CW Emoji
                 if (teilnehmer[anz].battlesPlayed == 0 && teilnehmer[anz].battleCount == 1) pics = pics + cwx;
@@ -153,21 +139,21 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
                 if (wins == 2 && teilnehmer[anz].battlesPlayed == 2) pics = pics + cwwin + cwwin;
 
                 //Berechnung der Verwarnungen von CW
-                if (teilnehmer[anz].collectionDayBattlesPlayed < 3) Sammelwarn = Sammelwarn + 1;
-                if (teilnehmer[anz].battlesPlayed == 0) Kriegwarn = Kriegwarn + 1;
+                if (teilnehmer[anz].collectionDayBattlesPlayed < 3) sammelwarn = sammelwarn + 1;
+                if (teilnehmer[anz].battlesPlayed == 0) kriegwarn = kriegwarn + 1;
               }
             } pics = pics + ` | `;
           }
 
           //Zuordnung des CLAN Liga Emoji
-          if (datab.warTrophies >= 3000) var emoLiga = legi;
-          if (datab.warTrophies <= 2999 && datab.warTrophies >= 1500) var emoLiga = gold;
-          if (datab.warTrophies <= 1499 && datab.warTrophies >= 600) var emoLiga = silber;
-          if (datab.warTrophies <= 599) var emoLiga = bronze;
+          if (dataB.warTrophies >= 3000) var emoLiga = legi;
+          if (dataB.warTrophies <= 2999 && dataB.warTrophies >= 1500) var emoLiga = gold;
+          if (dataB.warTrophies <= 1499 && dataB.warTrophies >= 600) var emoLiga = silber;
+          if (dataB.warTrophies <= 599) var emoLiga = bronze;
 
           //Zuordnung des KÖNIG Laune Emoji
-          if (Sammelwarn == 0 && Kriegwarn == 0) var face = `http://www.oyunincele.me/clash/emotions/thumbs-up.gif`;
-          if (Sammelwarn >= 1 || Kriegwarn >= 1) var face = `http://www.oyunincele.me/clash/emotions/angrer.gif`;
+          if (sammelwarn == 0 && kriegwarn == 0) var face = `http://www.oyunincele.me/clash/emotions/thumbs-up.gif`;
+          if (sammelwarn >= 1 || kriegwarn >= 1) var face = `http://www.oyunincele.me/clash/emotions/angrer.gif`;
 
           //Nachricht senden wenn in einem Clan
           const embedINFO = new Discord.RichEmbed()
@@ -180,18 +166,18 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
               cardlvl + "Kartenlvl. / Trophäen: " + trophys + "`" + dataA.trophies + "` " + trophysPB + "`" + dataA.stats.maxTrophies + "`"
             )
             .setDescription(
-              legi + "`" + per_leg.toFixed(0) + "% `" + gold + "`" + per_gol.toFixed(0) + "%`" +
+              maxi + "`" + per_max.toFixed(0) + "% `" + legi + "`" + per_leg.toFixed(0) + "% `" + gold + "`" + per_gol.toFixed(0) + "%`" +
               silber + "`" + per_sil.toFixed(0) + "% `" + bronze + "`" + per_bro.toFixed(0) + "%` " +
               cwwins + "Wins `" + dataA.games.warDayWins + "`"
             )
             .addField(
-              dataA.clan.name + emoLiga + cwtrophy + "`" + datab.warTrophies + "`",
+              dataA.clan.name + emoLiga + cwtrophy + "`" + dataB.warTrophies + "`",
               pics + "\n" +
-              battle + "Teiln:`" + Teiln.toFixed(0) + "%` Wins:`" + Quote.toFixed(0) + "%`      " +
+              battle + "Teiln:`" + teiln.toFixed(0) + "%` Wins:`" + quote.toFixed(0) + "%`      " +
               "     :outbox_tray: `" + dataA.clan.donations + "`" + " :inbox_tray: `" + dataA.clan.donationsReceived + "`"
             )
             .setFooter(
-              `${dataA.name}'s verpasste Sammelspiele: ${Sammelwarn} Kriegsspiele: ${Kriegwarn}`, face
+              `${dataA.name}'s verpasste Sammelspiele: ${sammelwarn} Kriegsspiele: ${kriegwarn}`, face
             )
           message.channel.send(embedINFO).catch(console.error);
         });
@@ -217,6 +203,7 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
           `Clankriege und alle Infos dazu, können nur für Spieler in Clans angezeigt werden!`, `http://www.oyunincele.me/clash/emotions/cry.gif`
         )
       message.channel.send(embedINFO).catch(console.error);
+      return console.log(`CW Prüfung für ${dataA.name} erfolgreich durchgeführt!`);
     }
   });
 }
