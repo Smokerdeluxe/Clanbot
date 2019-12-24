@@ -1,6 +1,6 @@
 module.exports = (client, message) => {
 
-  const config = require("./../commands/config.json");
+  const config = require("./../config.json");
 
   // Wenn Inhalt nicht mit Prefix beginnt oder Bot ist, STOP
   if (message.content.indexOf(config.prefix) !== 0 || message.author.bot) return;
