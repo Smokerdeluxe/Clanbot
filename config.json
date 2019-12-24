@@ -8,6 +8,7 @@
   "serverUrl": "https://discordapp.com/channels/375761445184471050/",
 
   "deleteCheck": "y",
+  "deleteCW": "y",
   "deleteCopy": "y",
   "deleteInfo": "y",
   "deleteKarten": "y",
