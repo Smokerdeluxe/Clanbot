@@ -60,7 +60,7 @@ Dann hast du Zutritt zum [Wegweiser](https://discordapp.com/channels/37576144518
 
 **🏆 Turnierpartner 🏆**
 Dann findest du im Turnierberich, alle wichtigen Infos zu [Terminen](https://discordapp.com/channels/375761445184471050/542306142886559753) die du brauchst. Schau mal in den [Turnierpartner-Chat](https://discordapp.com/channels/375761445184471050/541660234649960448), dort kannst du dich mit allen Turnierpartnern austauschen.`, `Viel Spaß beim umsehen...`, `Bei Fragen einfach melden, bis bald :wink:`);
-      return logging(`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole,`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
     }
     else {
       return fehler(`Nicht berechtigt!`, `Du musst im ${clanrat} sein, um ${partner} auf dem Server einzuteilen!`);
@@ -95,7 +95,7 @@ Dann findest du im Turnierberich, alle wichtigen Infos zu [Terminen](https://dis
 
       fertig(`Rolle entfernt!`, `**${member.displayName}** wurde/n die Rolle/n ${rollen} entfernt. \nSpieler wurde per PN benachrichtigt. \nBitte nicht vergessen den **Nickname anzupassen!**`);
       privat(`Nachricht der Bergclan Familie!`, config.emojiCR, `Dir wurde die Rolle Turnierpartner abgenommen!`, `\u200b`, `\u200b`);
-      return logging(`**${member.displayName}** wurde/n die Rolle/n ${rollen} entfernt!`);
+      return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole,`**${member.displayName}** wurde/n die Rolle/n ${rollen} entfernt!`);
 
     }
     else {
