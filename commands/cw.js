@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
+exports.run = async (client, message, args, Discord, config, fehler) => {
 
   //Eingegebene Nachricht löschen?
   if (config.deleteCW == `y`) message.delete(config.deleteTime * 1000);
@@ -161,7 +161,7 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
             .setAuthor(
               `${dataA.name} | #${tag}`,
               `http://www.oyunincele.me/clash/levels/${dataA.stats.level}.png`,
-              `https://royaleapi.com/player/${tag}`)
+              `${config.royLink}/player/${tag}`)
             .setTitle(
               cardlvl + "Kartenlvl. / Trophäen: " + trophys + "`" + dataA.trophies + "` " + trophysPB + "`" + dataA.stats.maxTrophies + "`"
             )
@@ -190,7 +190,7 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
         .setAuthor(
           `${dataA.name} | #${tag}`,
           `http://www.oyunincele.me/clash/levels/${dataA.stats.level}.png`,
-          `https://royaleapi.com/player/${tag}`)
+          `${config.royLink}/player/${tag}`)
         .setTitle(
           cardlvl + "Kartenlvl. / Trophäen: " + trophys + "`" + dataA.trophies + "` " + trophysPB + "`" + dataA.stats.maxTrophies + "`"
         )
