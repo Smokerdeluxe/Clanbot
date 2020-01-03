@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const Enmap = require("enmap");
 const fs = require("fs");
+const alive = require("./alive.js")
 const client = new Discord.Client();
 
 client.commands = new Enmap();
