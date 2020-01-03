@@ -117,15 +117,15 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
         `Der Clan **${clan.name}** hat dich aufgenommen. Die für dich relevanten Serverbereiche wurden freigeschaltet: 
 
 **__Innenhof__**
-Du hast nun Zutritt zum [Wegweiser](https://discordapp.com/channels/375761445184471050/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
+Du hast nun Zutritt zum [Wegweiser](${config.chanLink}/${message.guild.id}/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
 
 Das :sos: ist z.B. der **Support-Bereich**, dort findest du Infos zum Server und zu Discord überhaupt! Für Discord Neulinge sehr zu empfehlen, auch für den ersten Einstig! (muss leider angeschalten werden!)
 
 **__Schänke__**
-Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist herzlich eingeladen im [Berg-Chat](https://discordapp.com/channels/375761445184471050/375762081632485376) dabei zu sein!
+Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist herzlich eingeladen im [Berg-Chat](${config.chanLink}/${message.guild.id}/375762081632485376) dabei zu sein!
 
 **__👑 Clash Royale 👑__**
-Hier ist die CR Community vereint. Der Bereich bietet einen [Chat](https://discordapp.com/channels/375761445184471050/636520754455904256), [Karten Handelsplatz](https://discordapp.com/channels/375761445184471050/520584395552456705), [Freundeslink Kanal](https://discordapp.com/channels/375761445184471050/399109081295749120) für clanübergreifende Duos und Testspiele, [Präsentationsraum der CR Clans](https://discordapp.com/channels/375761445184471050/647029292634603521), u.v.m...
+Hier ist die CR Community vereint. Der Bereich bietet einen [Chat](${config.chanLink}/${message.guild.id}/636520754455904256), [Karten Handelsplatz](${config.chanLink}/${message.guild.id}/520584395552456705), [Freundeslink Kanal](${config.chanLink}/${message.guild.id}/399109081295749120) für clanübergreifende Duos und Testspiele, [Präsentationsraum der CR Clans](${config.chanLink}/${message.guild.id}/647029292634603521), u.v.m...
 
 Frag da gerne alles was du möchtest. Auch, wenn du bspw. eine Deckberatung zu deinem Clankrieg Deck brauchst.
 
@@ -259,9 +259,9 @@ Viel Spaß beim umsehen, bei Fragen einfach melden, bis bald :wink:`, `__Deine C
         fertig(`Rolle hinzugefügt!`, `**${member.displayName}** ist jetzt im ${rollen}! Der Einleitungstext zur Aufgabenbeschreibung wurde per PN gesendet!`);
         privat(`Willkommen im ${altenrat.name}!`, config.emojiCR, `Deine Aufgabe besteht darin, deinen Clan am laufen zu halten, inaktive Spieler auszusortieren (der Clanleitung melden), aktiv an der Clangestaltung mitzuwirken und den Clanchat zu beleben! Ein bisschen wie ein Animateur, aber eher einfach ein gutes Vorbild :wink:
 
-Wenn dir jemand auffällt, der Urlaub in den Clanchat geschrieben hat, evtl. aber nicht auf Discord ist, trage dies bitte [hier](https://discordapp.com/channels/375761445184471050/393909321169108993) ein.
+Wenn dir jemand auffällt, der Urlaub in den Clanchat geschrieben hat, evtl. aber nicht auf Discord ist, trage dies bitte [hier](${config.chanLink}/${message.guild.id}/393909321169108993) ein.
 
-Am [schwarzen Brett](https://discordapp.com/channels/375761445184471050/646274646097920021) findest du wichtige Infos, die du deinem Clan im Chat mitteilen solltest (Falls noch nicht geschehen, oder untergegangen)! 
+Am [schwarzen Brett](${config.chanLink}/${message.guild.id}/646274646097920021) findest du wichtige Infos, die du deinem Clan im Chat mitteilen solltest (Falls noch nicht geschehen, oder untergegangen)! 
 
 Neuankömmlinge im Clan werden begrüßt, begleitet und evtl. zu Discord "geführt" um das ganze Clangeschehen mitzubekommen! 
 
