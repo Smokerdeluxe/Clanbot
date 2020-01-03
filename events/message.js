@@ -1,4 +1,4 @@
-module.exports = (client, message) => {
+module.exports = async (client, message) => {
 
   const config = require("./../config.json");
 
@@ -31,7 +31,7 @@ module.exports = (client, message) => {
       .setColor(`#0080FF`)
       .setAuthor(
         art,
-        `https://cdn.discordapp.com/emojis/` + emoji
+        `${config.emoLink}/${emoji}.png`
       )
       .setDescription(text)
     logChannel.send(logEmbed)
@@ -45,7 +45,7 @@ module.exports = (client, message) => {
       .setColor(`#04B404`)
       .setAuthor(
         `Fertig! ` + art,
-        `https://cdn.discordapp.com/emojis/645360655553265664.png`
+        `${config.emoLink}/645360655553265664.png`
       )
       .setDescription(text)
     message.channel.send(goodEmbed)
@@ -58,7 +58,7 @@ module.exports = (client, message) => {
       .setColor(`#DF0101`)
       .setAuthor(
         `Fehler! ` + art,
-        `https://cdn.discordapp.com/emojis/645357169968939054.png`
+        `${config.emoLink}/645357169968939054.png`
       )
       .setDescription(text)
     message.channel.send(badEmbed)
@@ -71,7 +71,7 @@ module.exports = (client, message) => {
       .setColor(`#FFFF00`)
       .setAuthor(
         `Warnung! ` + art,
-        `https://cdn.discordapp.com/emojis/645360592919592970.png`
+        `${config.emoLink}/645360592919592970.png`
       )
       .setDescription(text)
     message.channel.send(warnEmbed)
@@ -84,7 +84,7 @@ module.exports = (client, message) => {
       .setColor(`#42423f`)
       .setAuthor(
         art,
-        `https://cdn.discordapp.com/emojis/` + emoji
+        `${config.emoLink}/${emoji}.png`
       )
       .setDescription(text)
       .addField (art2, leader)
@@ -92,6 +92,8 @@ module.exports = (client, message) => {
       .then()
       .catch(console.error);
   }
+
+
 
   // Run the command
   cmd.run(client, message, args, Discord, config, fehler, logging, fertig, warnung, privat);
