@@ -1,4 +1,4 @@
-exports.run = async (client, message, args, Discord, config, fehler, logging, fertig, warnung, privat) => {
+exports.run = async (client, message, args, Discord, config, fehler) => {
 
   //Eingegebene Nachricht löschen?
   if (config.deleteCheck == `y`) message.delete(config.deleteTime * 1000);
@@ -154,7 +154,7 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
       .setAuthor(
         `${dataA.name} | #${tag}`,
         `http://www.oyunincele.me/clash/levels/${dataA.stats.level}.png`,
-        `https://royaleapi.com/player/${tag}`)
+        `${config.royLink}/player/${tag}`)
       .setTitle(
         cardlvl + "Kartenlvl. / Trophäen: " + trophys + "`" + dataA.trophies + "` " + trophysPB + "`" + dataA.stats.maxTrophies + "`"
       )
@@ -183,12 +183,12 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
       )
       .addField(
         `\u200b`,
-        `Die Winrate (letzte 20 Kriege) sollte über \nQuote Soll liegen, ist bei [RoyaleApi](https://royaleapi.com/player/${tag}) abgfragbar. \n(ganz unten "ClanWarHistory", rote Felder \n sind verpasste Finale.)`
+        `Die Winrate (letzte 20 Kriege) sollte über \nQuote Soll liegen, ist bei [RoyaleApi](${config.royLink}/player/${tag}) abgfragbar. \n(ganz unten "ClanWarHistory", rote Felder \n sind verpasste Finale.)`
       )
       .setFooter(
         `Anhand der Kartenlevel ist ${dataA.name} \nam besten für ${eignung} geeignet! \nDie folgende Nachricht in Browser kopieren \num Spieler einzuladen!`
       )
     message.channel.send(embedINFO).then(() => message.channel.send(`clashroyale://playerInfo?id=${tag}`)).catch(console.error);
-    return console.log(`Check für ${dataA.name} erfolgreich durchgeführt!`)
+    return console.log(`Check für ${dataA.name} erfolgreich durchgeführt!`);
   });
 }

@@ -56,10 +56,10 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
       privat(`Willkommen bei der Bergclan Familie!`, config.emojiCR, `Um dich als Turnierpartner freizuschalten, sieh dir das <#541643055963439106> an (falls noch nicht geschehen) und bestätige unten mit **allen Emojis/Reaktionen, __von links nach rechts__**! \n\nDann sind die für dich relevanten Serverbereiche freigeschaltet:
 
 **__Innenhof__**
-Dann hast du Zutritt zum [Wegweiser](https://discordapp.com/channels/375761445184471050/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
+Dann hast du Zutritt zum [Wegweiser](${config.chanLink}/${message.guild.id}/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
 
 **🏆 Turnierpartner 🏆**
-Dann findest du im Turnierberich, alle wichtigen Infos zu [Terminen](https://discordapp.com/channels/375761445184471050/542306142886559753) die du brauchst. Schau mal in den [Turnierpartner-Chat](https://discordapp.com/channels/375761445184471050/541660234649960448), dort kannst du dich mit allen Turnierpartnern austauschen.`, `Viel Spaß beim umsehen...`, `Bei Fragen einfach melden, bis bald :wink:`);
+Dann findest du im Turnierberich, alle wichtigen Infos zu [Terminen](${config.chanLink}/${message.guild.id}/542306142886559753) die du brauchst. Schau mal in den [Turnierpartner-Chat](${config.chanLink}/${message.guild.id}/541660234649960448), dort kannst du dich mit allen Turnierpartnern austauschen.`, `Viel Spaß beim umsehen...`, `Bei Fragen einfach melden, bis bald :wink:`);
       return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole,`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
     }
     else {

@@ -60,12 +60,12 @@ exports.run = async (client, message, args, Discord, config, fehler, logging, fe
       privat(`Willkommen bei der Bergclan Familie!`, config.emojiCR, `Die für dich relevanten Serverbereiche wurden freigeschaltet: 
 
 **__Innenhof__**
-Du hast nun Zutritt zum [Wegweiser](https://discordapp.com/channels/375761445184471050/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
+Du hast nun Zutritt zum [Wegweiser](${config.chanLink}/${message.guild.id}/500419980022513665/637422022867288074) dort kannst du verschiedene Bereiche ab- bzw. anschalten. Bitte genau lesen!
 
 Das :sos: ist z.B. der **Support-Bereich**, dort findest du Infos zum Server und zu Discord überhaupt! Für Discord Neulinge sehr zu empfehlen, auch für den ersten Einstig! (muss leider angeschalten werden!)
 
 **__Schänke__**
-Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist herzlich eingeladen im [Berg-Chat](https://discordapp.com/channels/375761445184471050/375762081632485376) dabei zu sein!`, `Viel Spaß beim umsehen...`, `Bei Fragen einfach melden, bis bald :wink:`);
+Hier kommunizieren wir **ALLE** zusammen (Familie, Freunde und Gäste)! Du bist herzlich eingeladen im [Berg-Chat](${config.chanLink}/${message.guild.id}/375762081632485376) dabei zu sein!`, `Viel Spaß beim umsehen...`, `Bei Fragen einfach melden, bis bald :wink:`);
       return logging(message.member.nickname + ` hat Rollen bearbeitet!`, config.emojiRole,`**${member.displayName}** wurde die Rolle ${rollen} hinzugefügt!`);
     }
     else {
